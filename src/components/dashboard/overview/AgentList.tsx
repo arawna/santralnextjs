@@ -56,7 +56,20 @@ export function AgentList(): React.JSX.Element {
             </TableRow>
           </TableHead>
           <TableBody style={{maxHeight:"100px"}}>
-            {data.map((item,index) => {
+            {data.filter(item => item.connectionNumber !== "-").map((item,index) => {
+              return (
+                <TableRow hover key={index}>
+                  <TableCell style={{padding:"2px"}}>{item.connectionNumber}</TableCell>
+                  <TableCell style={{padding:"2px"}}>{item.connectionName}</TableCell>
+                  <TableCell style={{padding:"2px"}}>{item.agentName}</TableCell>
+                  {item.connectionTime !== "-" && <TableCell style={{padding:"2px"}}>
+                    <Chip color="success" label={item.connectionTime.slice(0,-8)} size="small" />
+                  </TableCell>}
+                  {item.connectionTime === "-" && <TableCell style={{padding:"2px"}}>-</TableCell>}
+                </TableRow>
+              );
+            })}
+            {data.filter(item => item.connectionNumber === "-").map((item,index) => {
               return (
                 <TableRow hover key={index}>
                   <TableCell style={{padding:"2px"}}>{item.connectionNumber}</TableCell>
