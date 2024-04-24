@@ -6,10 +6,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -20,7 +17,7 @@ import Papa from "papaparse";
 import axios from 'axios';
 import { Receipt as ReceiptIcon } from '@phosphor-icons/react/dist/ssr/Receipt';
 import { redirect } from 'next/navigation';
-import { Box, borderRadius, maxHeight } from '@mui/system';
+import { Box } from '@mui/system';
 
 const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -49,13 +46,13 @@ const VisuallyHiddenInput = styled("input")({
 
 export function UploadCsv(): React.JSX.Element {
 
-    let [file,setFile] = React.useState();
-    let [arrayData, setArrayData] = React.useState([]);
+    let [file,setFile] = React.useState<any>();
+    let [arrayData, setArrayData] = React.useState<any[]>([]);
 
     let [dataCount,setDataCount] = React.useState(0);
 
-    let [allDataList,setAllDataList] = React.useState([]);
-    let [detailList,setDetailList] = React.useState([]);
+    let [allDataList,setAllDataList] = React.useState<any[]>([]);
+    let [detailList,setDetailList] = React.useState<any[]>([]);
 
     let [modalOpen,setModalOpen] = React.useState(false);
     const handleModelOpen = () => setModalOpen(true);

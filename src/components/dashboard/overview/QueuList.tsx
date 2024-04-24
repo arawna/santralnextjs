@@ -27,7 +27,7 @@ const statusMap = {
 
 export function QueuList(): React.JSX.Element {
 
-  let [data,setData] = React.useState([]);
+  let [data,setData] = React.useState<any[]>([]);
 
   React.useEffect(() => {
     reloadValues()
