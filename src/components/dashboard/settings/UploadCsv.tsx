@@ -118,10 +118,17 @@ export function UploadCsv(): React.JSX.Element {
           axios.post("http://38.242.146.83:3001/insertCustomer",dataList).then((res) => {
             console.log(res.data)
             setLoading(false)
-            Swal.fire({
-              icon:"success",
-              text:"Yükleme başarılı"
-            })
+            if(res.data.success ){
+              Swal.fire({
+                icon:"success",
+                text:"Yükleme başarılı"
+              })
+            }else {
+              Swal.fire({
+                icon:"error",
+                text:"Dosya biçimi hatalı"
+              })
+            }
             updateDataCount();
             getAllDataList();
           }).catch((res) => {
