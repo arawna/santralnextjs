@@ -2,7 +2,7 @@ import type { NavItemConfig } from '@/types/nav';
 import { paths } from '@/paths';
 
 export const navItems = [
-  { key: 'overview', title: 'Duver Sayfası', href: paths.dashboard.overview, icon: 'chart-pie' },
+  { key: 'overview', title: 'Duvar Sayfası', href: paths.dashboard.overview, icon: 'chart-pie' },
   { key: 'settings', title: 'Csv Yükleme', href: paths.dashboard.settings, icon: 'gear-six' },
   { key: 'customers', title: 'Müşteri Detay', href: paths.dashboard.customers, icon: 'users' },
 ] satisfies NavItemConfig[];
