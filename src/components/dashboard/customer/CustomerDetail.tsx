@@ -29,7 +29,7 @@ export default function CustomerDetail() {
 
   useEffect(() => {
     if(!joined){
-      socket.emit("joinRoom", localStorage.getItem("token"));
+      socket.emit("joinRoom", localStorage.getItem("custom-auth-token"));
       setJoined(true)
     }
   },[joined])
