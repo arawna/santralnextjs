@@ -56,7 +56,7 @@ export function AgentList(): React.JSX.Element {
             </TableRow>
           </TableHead>
           <TableBody style={{maxHeight:"100px"}}>
-            {data.filter(item => item.connectionNumber !== "-").map((item,index) => {
+            {data.filter(item => item.connectionNumber !== "-" && !(["1025","1026","1027"].includes(item.agentNumber))).map((item,index) => {
               return (
                 <TableRow hover key={index}>
                   <TableCell style={{padding:"2px"}}>{item.connectionNumber}</TableCell>
@@ -69,7 +69,7 @@ export function AgentList(): React.JSX.Element {
                 </TableRow>
               );
             })}
-            {data.filter(item => item.connectionNumber === "-").map((item,index) => {
+            {data.filter(item => item.connectionNumber === "-" && !(["1025","1026","1027"].includes(item.agentNumber))).map((item,index) => {
               return (
                 <TableRow hover key={index}>
                   <TableCell style={{padding:"2px"}}>{item.connectionNumber}</TableCell>
