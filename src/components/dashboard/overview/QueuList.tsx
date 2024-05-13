@@ -64,7 +64,7 @@ export function QueuList(): React.JSX.Element {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.filter(item => item.waitingNumber !== "-").map((item,index) => {
+            {data.filter(item => item.waitingNumber !== "-" && !(["8001"].includes(item.queueNumber))).map((item,index) => {
               return (
                 <TableRow hover key={index}>
                   <TableCell style={{padding:"2px"}}>{item.queueNumber}</TableCell>
@@ -77,7 +77,7 @@ export function QueuList(): React.JSX.Element {
                 </TableRow>
               );
             })}
-            {data.filter(item => item.waitingNumber === "-").map((item,index) => {
+            {data.filter(item => item.waitingNumber === "-" && !(["8001"].includes(item.queueNumber))).map((item,index) => {
               return (
                 <TableRow hover key={index}>
                   <TableCell style={{padding:"2px"}}>{item.queueNumber}</TableCell>
