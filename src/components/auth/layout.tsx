@@ -46,11 +46,11 @@ export function Layout({ children }: LayoutProps): React.JSX.Element {
             <Typography color="inherit" sx={{ fontSize: '24px', lineHeight: '32px', textAlign: 'center' }} variant="h1">
               Crm Sistemleri{' '}
               <Box component="span" sx={{ color: '#15b79e' }}>
-                Frozenapps
+                Queen Soft
               </Box>
             </Typography>
             <Typography align="center" variant="subtitle1">
-              Profesyonel Santral Ve Müsteri Yönetim Sistemleri iletişim. Telegram: @frozenapps
+              Profesyonel Santral Ve Müsteri Yönetim Sistemleri.
             </Typography>
           </Stack>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>

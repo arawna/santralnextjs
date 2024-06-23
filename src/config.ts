@@ -7,6 +7,6 @@ export interface Config {
 }
 
 export const config: Config = {
-  site: { name: 'Telegram: @frozenapps', description: '', themeColor: '#090a0b', url: getSiteURL() },
+  site: { name: 'Queen Soft', description: '', themeColor: '#090a0b', url: getSiteURL() },
   logLevel: (process.env.NEXT_PUBLIC_LOG_LEVEL as keyof typeof LogLevel) ?? LogLevel.ALL,
 };

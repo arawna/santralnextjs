@@ -17,7 +17,7 @@ import Papa from "papaparse";
 import axios from 'axios';
 import { Receipt as ReceiptIcon } from '@phosphor-icons/react/dist/ssr/Receipt';
 import { redirect } from 'next/navigation';
-import { Box } from '@mui/system';
+import { Box, fontSize } from '@mui/system';
 
 const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -58,12 +58,15 @@ export function UploadCsv(): React.JSX.Element {
     const handleModelOpen = () => setModalOpen(true);
     const handleModelClose = () => setModalOpen(false);
 
+    let [dialerState,setDialerState] = React.useState(false);
+
     let [loading,setLoading] = React.useState(false);
 
     React.useEffect(() => {
         //api istek at
         updateDataCount();
         getAllDataList();
+        checkDialerState();
     },[])
 
     const MySwal = withReactContent(Swal)
@@ -80,6 +83,23 @@ export function UploadCsv(): React.JSX.Element {
           return;
         }
         setFile(e.target.files[0])
+    }
+
+    const checkDialerState = () => {
+      axios.get("http://38.242.146.83:3001/CheckDialerState").then((res:any) => {
+        setDialerState(res.data)
+      })
+    }
+
+    const changeDialerState = (state:boolean) => {
+      axios.get(`http://38.242.146.83:3001/CheckPaymentAndOpenOrCloseDialer?state=${state}`).then((res:any) => {
+        MySwal.fire({
+          text: res.data.message,
+          icon: res.data.status ? "success" : "error",
+          confirmButtonText:"Tamam"
+        })
+        checkDialerState();
+      })
     }
 
     const getAllDataList = () => {
@@ -280,15 +300,31 @@ export function UploadCsv(): React.JSX.Element {
                     </Card>
                 </Grid>
             </Grid>
-            <Card sx={{ width: '100%' }}>
-                 <CardHeader subheader="" title="Seçenekler" />
-                 <Divider />
-                 <CardContent>
-                    <Button style={{marginRight:"10px",marginTop:"10px"}} onClick={() => handleDeleteToday()} variant="contained">Bugün Eklenen Datayı Sil</Button>
-                    <Button style={{marginRight:"10px",marginTop:"10px"}} onClick={() => handleDeleteAll()} variant="contained">Tüm Datayı Sil</Button>
-                 </CardContent>
-                <Divider />
-            </Card>
+            <Grid container spacing={2}>
+              <Grid lg={6}>
+                <Card sx={{ width: '100%' }}>
+                  <CardHeader subheader="" title="Seçenekler" />
+                  <Divider />
+                  <CardContent>
+                      <Button style={{marginRight:"10px",marginTop:"10px"}} onClick={() => handleDeleteToday()} variant="contained">Bugün Eklenen Datayı Sil</Button>
+                      <Button style={{marginRight:"10px",marginTop:"10px"}} onClick={() => handleDeleteAll()} variant="contained">Tüm Datayı Sil</Button>
+                  </CardContent>
+                  <Divider />
+                </Card>
+              </Grid>
+              <Grid lg={6}>
+                <Card sx={{ width: '100%' }}>
+                  <CardHeader subheader="" title="Dialer" />
+                  <Divider />
+                  <CardContent>
+                      <Button disabled={dialerState} style={{marginRight:"10px",marginTop:"10px",backgroundColor:"green"}} onClick={() => changeDialerState(true)} variant="contained">Başlat</Button>
+                      <Button disabled={!dialerState} style={{marginRight:"10px",marginTop:"10px",backgroundColor:"red"}} onClick={() => changeDialerState(false)} variant="contained">Durdur</Button>
+                      <span style={{fontSize:"18px",verticalAlign:"-7px"}}>Durum: <b style={dialerState ? {color:"green"} : {color:"red"}}>{dialerState ? "Aktif" : "Deaktif"}</b></span>
+                  </CardContent>
+                  <Divider />
+                </Card>
+              </Grid>
+            </Grid>
             <Card sx={{ width: '100%' }}>
                  <CardHeader subheader="" title="Data Listesi" />
                  <Divider />

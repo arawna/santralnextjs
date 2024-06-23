@@ -27,7 +27,7 @@ export function Logo({ color = 'dark', emblem, height = HEIGHT, width = WIDTH }:
     url = color === 'light' ? '/assets/logo.svg' : '/assets/logo--dark.svg';
   }
 
-  return <p style={{color:color === 'light' ? 'white' : 'black',margin:"0px",fontWeight:"800",textAlign:"center",cursor:"pointer",fontSize:"18px"}}>Telegram: @frozenapps</p>;
+  return <p style={{color:color === 'light' ? 'white' : 'black',margin:"0px",fontWeight:"800",textAlign:"center",cursor:"pointer",fontSize:"18px"}}>Queen Soft</p>;
 }
 
 export interface DynamicLogoProps {
