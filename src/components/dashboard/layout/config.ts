@@ -3,7 +3,7 @@ import { paths } from '@/paths';
 
 export const navItems = [
   { key: 'overview', title: 'Duvar Sayfası', href: paths.dashboard.overview, icon: 'chart-pie' },
-  { key: 'settings', title: 'Ayarler', href: paths.dashboard.settings, icon: 'gear-six' },
+  { key: 'settings', title: 'Ayarlar', href: paths.dashboard.settings, icon: 'gear-six' },
   { key: 'customers', title: 'Müşteri Detay', href: paths.dashboard.customers, icon: 'users' },
 ] satisfies NavItemConfig[];
 // export const navItems = [
